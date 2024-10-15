@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.deepacat.WorldshaperCore;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
@@ -19,13 +19,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(ExampleMod.MOD_ID)
-public class ExampleMod {
-    public static final String MOD_ID = "examplemod";
+@Mod(WorldshaperCore.MOD_ID)
+public class WorldshaperCore {
+    public static final String MOD_ID = "worldshapercore";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate EXAMPLE_REGISTRATE = GTRegistrate.create(ExampleMod.MOD_ID);
+    public static GTRegistrate WSCRegistrate = GTRegistrate.create(WorldshaperCore.MOD_ID);
 
-    public ExampleMod() {
+    public WorldshaperCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -43,20 +43,21 @@ public class ExampleMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        WSportals.init();
         event.enqueueWork(() -> {
-            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-            LOGGER.info("Look, I found a {}!", Items.DIAMOND);
+//            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
+//            LOGGER.info("Look, I found a {}!", Items.DIAMOND);
         });
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
+//        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
     }
 
     // You MUST have this for custom materials.
     // Remember to register them not to GT's namespace, but your own.
     private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(ExampleMod.MOD_ID);
+        GTCEuAPI.materialManager.createRegistry(WorldshaperCore.MOD_ID);
     }
 
     // As well as this.

@@ -45,6 +45,8 @@ repositories {
     flatDir {
         dir 'libs'
     }
+    maven { url "https://maven.shedaniel.me/" }
+    maven {url = "https://maven.kyrptonaught.dev"}
     mavenCentral()
     maven {
         name = 'GTCEu Maven'
@@ -115,16 +117,29 @@ dependencies {
 
     modCompileOnly("mezz.jei:jei-$project.minecraft_version-forge-api:$project.jei_version") { transitive = false }
     modCompileOnly("mezz.jei:jei-$project.minecraft_version-common-api:$project.jei_version") { transitive = false }
+    modRuntimeOnly("mezz.jei:jei-$project.minecraft_version-forge:$project.jei_version") { transitive = false }
+    modRuntimeOnly ("dev.emi:emi-forge:$project.emi_version+$project.minecraft_version")
+    modRuntimeOnly("curse.maven:jade-324717:5390389")
 
+    // gregtech
     modImplementation("com.gregtechceu.gtceu:gtceu-$project.minecraft_version:$project.gtceu_version") { transitive = false }
     modImplementation("com.lowdragmc.ldlib:ldlib-forge-$project.minecraft_version:$project.ldlib_version") { transitive = false }
     modImplementation("com.tterrag.registrate:Registrate:$project.registrate_version")
     modImplementation("dev.latvian.mods:kubejs-forge:$project.kubejs_version")
-
     modRuntimeOnly("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration_version")
-    modRuntimeOnly("mezz.jei:jei-$project.minecraft_version-forge:$project.jei_version") { transitive = false }
-    
-    modRuntimeOnly ("dev.emi:emi-forge:$project.emi_version+$project.minecraft_version")
+
+
+    // Customportalapi
+    modImplementation("curse.maven:custom-portal-api-forge-621463:4704980")
+    modImplementation("curse.maven:create-trains-and-customportalapi-compability-1065647:5540455")
+
+    // create
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    modImplementation("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+
+    // ws mods
+//    modRuntimeOnly("curse.maven:dimensionaldoors-284876:5617415")
+    modImplementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
 
     // Mixin Extras
     implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:$project.mixinextras_version"))

@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.deepacat.WorldshaperCore.GTaddon;
 
+import com.deepacat.WorldshaperCore.WorldshaperCore;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -9,10 +10,10 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 @GTAddon
-public class ExampleGTAddon implements IGTAddon {
+public class WorldshaperGTAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
-        return ExampleMod.EXAMPLE_REGISTRATE;
+        return WorldshaperCore.WSCRegistrate;
     }
 
     @Override
@@ -22,7 +23,7 @@ public class ExampleGTAddon implements IGTAddon {
 
     @Override
     public String addonModId() {
-        return ExampleMod.MOD_ID;
+        return WorldshaperCore.MOD_ID;
     }
 
     @Override
