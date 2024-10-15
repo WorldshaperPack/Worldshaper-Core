@@ -1,10 +1,18 @@
+The core pack mod for the Worldshaper modpack
+
+Currently implements:
+	Custom portals with create train support
+Planned:
+	custom multiblocks for the packs progression, 
+	likely a replacement for GCyMs
+	custom bedrock miners if gtm doesn't fix them
+	potentially a cross dimension item transportation method using gt multiblock
+
+
+https://github.com/Deepacat/Worldshaper
+
+Based on 
 # GregTech Addon Template
- Template for GregTech Modern addons on 1.20.1
+Template for GregTech Modern addons on 1.20.1
 
- Original template by screret, updated by JuiceyBeans
-
-Repositories you can use for additional reference:
-
-- [Juiceycality](https://github.com/JuiceyBeans/Juiceycality)
-- [CosmicCore](https://github.com/Frontiers-PackForge/CosmicCore)
-- [Gregicality Rocketry](https://github.com/Argent-Matter/gcyr/)
+Original template by screret, updated by JuiceyBeans
