@@ -5,7 +5,7 @@ import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
-public class WSportals {
+public class WSPortals {
 	public static void init() {
 //		CustomPortalBuilder.beginPortal()
 //				.frameBlock(GTBlocks.COIL_TRINIUM.get())
