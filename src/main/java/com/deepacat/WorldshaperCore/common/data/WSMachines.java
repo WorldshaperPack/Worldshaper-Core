@@ -21,7 +21,7 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 
 
 public class WSMachines {
-    public static final MultiblockMachineDefinition twobytwowiremill = REGISTRATE
+    public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
             .multiblock("idk", holder -> new ParallelMultiblock(holder, 4))
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.WIREMILL_RECIPES)

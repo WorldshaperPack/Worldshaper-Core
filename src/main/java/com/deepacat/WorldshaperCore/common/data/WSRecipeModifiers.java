@@ -1,7 +1,6 @@
 package com.deepacat.WorldshaperCore.common.data;
 
 import com.deepacat.WorldshaperCore.api.capability.IParallelMultiblock;
-import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -14,7 +13,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
 
 public class WSRecipeModifiers extends GTRecipeModifiers {
     public static final RecipeModifier SETPARALLEL = (machine, recipe, params, result) -> WSRecipeModifiers
