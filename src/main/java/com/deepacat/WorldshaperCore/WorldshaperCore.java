@@ -1,5 +1,7 @@
 package com.deepacat.WorldshaperCore;
 
+import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
+import com.deepacat.WorldshaperCore.common.data.WSMachines;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -28,6 +30,8 @@ public class WorldshaperCore {
     public WorldshaperCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        WorldshaperCore.init();
+
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::addMaterialRegistries);
@@ -40,6 +44,10 @@ public class WorldshaperCore {
         // If we want to use annotations to register event listeners,
         // we need to register our object like this!
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private static void init() {
+        WSRegistries.REGISTRATE.registerRegistrate();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -76,5 +84,6 @@ public class WorldshaperCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         //CustomMachines.init();
+        WSMachines.init();
     }
 }
