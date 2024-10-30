@@ -7,8 +7,8 @@ license = "${mod_license}"
     version = "${version}"
     displayName = "${mod_name}"
     displayURL = "${mod_url}"
-    logoFile="icon.png"
-    authors="${mod_author}"
+    logoFile = "icon.png"
+    authors = "${mod_author}"
 
     [[dependencies.${mod_id}]]
         modId = "forge"
