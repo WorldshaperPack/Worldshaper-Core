@@ -22,13 +22,13 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 
 public class WSMachines {
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
-            .multiblock("idk", holder -> new ParallelMultiblock(holder, 4))
+            .multiblock("idk", holder -> new ParallelMultiblock(holder, 8))
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.WIREMILL_RECIPES)
             .alwaysTryModifyRecipe(true)
-            .recipeModifiers(GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK),
-                    WSRecipeModifiers.SETPARALLEL)
+            .recipeModifiers(WSRecipeModifiers.SETPARALLEL, GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK)
+                    )
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("FF", "FF")
