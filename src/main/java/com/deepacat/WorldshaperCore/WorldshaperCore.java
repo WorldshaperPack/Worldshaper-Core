@@ -2,6 +2,7 @@ package com.deepacat.WorldshaperCore;
 
 import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
 import com.deepacat.WorldshaperCore.common.data.WSMachines;
+import com.deepacat.WorldshaperCore.common.data.WSRecipeTypes;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -80,6 +81,7 @@ public class WorldshaperCore {
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
         //CustomRecipeTypes.init();
+        WSRecipeTypes.init();
     }
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
