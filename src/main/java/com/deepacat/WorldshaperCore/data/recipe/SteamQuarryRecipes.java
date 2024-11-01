@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore.data.recipe.serialized.chemistry;
+package com.deepacat.WorldshaperCore.data.recipe;
 
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -21,7 +21,7 @@ public class SteamQuarryRecipes {
                 .chancedOutput(ore, Tin, 3000, 0)
                 .chancedOutput(ore, Gold, 1500, 0)
                 .chancedOutput(ore, Redstone, 2000, 0)
-                .inputFluids(Steam.getFluid(2400))
+                .EUt(32)
                 .duration(600)
                 .save(provider);
 
