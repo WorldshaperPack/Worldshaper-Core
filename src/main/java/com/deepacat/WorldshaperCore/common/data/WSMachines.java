@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraftforge.event.level.PistonEvent;
@@ -47,14 +48,11 @@ public class WSMachines {
             .compassNodeSelf()
             .register();
 
-    public static final MultiblockMachineDefinition steam_quarry = REGISTRATE
-            .multiblock("whatthesigma", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition STEAM_QUARRY = REGISTRATE
+            .multiblock("steam_quarry", SteamParallelMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(STEAM_QUARRY_RECIPES)
             .alwaysTryModifyRecipe(true)
-            .recipeModifiers(WSRecipeModifiers.SETPARALLEL, GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK)
-            )
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("FFF", "FFF", "###", "###", "###")
