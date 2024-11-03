@@ -5,6 +5,7 @@ import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
@@ -59,7 +60,10 @@ public class WSMachines {
                     .aisle("FCF", "FCF", "PCP", "PCP", "PXP")
                     .aisle("FFF", "FSF", "###", "###", "###")
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('F', blocks(CASING_STEEL_SOLID.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where('F', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(6)
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
                     .where('C', blocks(Blocks.CHAIN))
                     .where('P', blocks(CASING_STEEL_PIPE.get()))
                     .where('X', blocks(CASING_STEEL_SOLID.get()))
