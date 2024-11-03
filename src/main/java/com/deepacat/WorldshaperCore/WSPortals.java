@@ -1,10 +1,5 @@
 package com.deepacat.WorldshaperCore;
 
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
-
 public class WSPortals {
 	public static void init() {
 //		CustomPortalBuilder.beginPortal()
