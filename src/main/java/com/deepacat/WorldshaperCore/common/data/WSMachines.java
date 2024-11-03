@@ -67,12 +67,10 @@ public class WSMachines {
                     .where('C', blocks(Blocks.CHAIN))
                     .where('P', blocks(CASING_STEEL_PIPE.get()))
                     .where('X', blocks(CASING_STEEL_SOLID.get()))
-                    .where('#', Predicates.air())
+                    .where('#', Predicates.any())
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
-            .compassSections(GTCompassSections.TIER[IV])
-            .compassNodeSelf()
             .register();
 
 
