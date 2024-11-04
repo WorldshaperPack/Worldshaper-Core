@@ -14,10 +14,12 @@ import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraftforge.event.level.PistonEvent;
 import net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator;
+import org.jetbrains.annotations.NotNull;
 
 
 import static com.deepacat.WorldshaperCore.api.registries.WSRegistries.REGISTRATE;
@@ -29,7 +31,7 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 
 public class WSMachines {
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
-            .multiblock("idk", holder -> new ParallelMultiblock(holder, 8))
+            .multiblock("idk", holder -> new ParallelMultiblock(holder, 4))
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.WIREMILL_RECIPES)
             .alwaysTryModifyRecipe(true)
@@ -45,13 +47,16 @@ public class WSMachines {
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
-            .compassSections(GTCompassSections.TIER[IV])
-            .compassNodeSelf()
             .register();
 
     public static final MultiblockMachineDefinition STEAM_QUARRY = REGISTRATE
-            .multiblock("steam_quarry", SteamParallelMultiblockMachine::new)
-            .rotationState(RotationState.ALL)
+            .multiblock("steam_quarry",  (holder) -> new SteamParallelMultiblockMachine(holder, 1, new Object[0]){
+                @Override
+                public void setUpwardsFacing(@NotNull Direction upwardsFacing) {
+                    super.setUpwardsFacing(Direction.NORTH);
+                }
+            })
+            .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(STEAM_QUARRY_RECIPES)
             .alwaysTryModifyRecipe(true)
             .appearanceBlock(CASING_STEEL_SOLID)
@@ -60,7 +65,7 @@ public class WSMachines {
                     .aisle("FCF", "FCF", "PCP", "PCP", "PXP")
                     .aisle("FFF", "FSF", "###", "###", "###")
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('F', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(6)
+                    .where('F', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(8)
                             .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
                             .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1))
                             .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
@@ -72,8 +77,6 @@ public class WSMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
             .register();
-
-
 
     public static void init(){
 
