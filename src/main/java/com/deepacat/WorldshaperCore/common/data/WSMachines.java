@@ -3,9 +3,11 @@ package com.deepacat.WorldshaperCore.common.data;
 
 import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
@@ -34,7 +36,6 @@ import com.gregtechceu.gtceu.api.machine.*;
 
 public class WSMachines {
 
-
     public static final MachineDefinition[] WS_MACERATOR = registerTieredMachines("ws_macerator",
             (holder, tier) -> new SimpleTieredMachine(holder, tier, defaultTankSizeFunction), (tier, builder) -> builder
                     .langValue("%s Macerator %s".formatted(VLVH[tier], VLVT[tier]))
@@ -57,9 +58,6 @@ public class WSMachines {
                     .recipeModifier(SimpleSteamMachine::recipeModifier)
                     .renderer(() -> new WorkableSteamMachineRenderer(pressure, GTCEu.id("block/machines/macerator")))
                     .register());
-
-
-
 
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
             .multiblock("idk", holder -> new ParallelMultiblock(holder, 4))
