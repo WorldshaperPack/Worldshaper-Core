@@ -70,8 +70,7 @@ public class WSMachines {
 
 
 
-=======
->>>>>>> parent of 24bd1c6 (new macerator)
+
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
             .multiblock("idk", holder -> new ParallelMultiblock(holder, 8))
             .rotationState(RotationState.ALL)
