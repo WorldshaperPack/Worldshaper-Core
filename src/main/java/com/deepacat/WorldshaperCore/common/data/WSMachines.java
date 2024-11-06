@@ -3,10 +3,12 @@ package com.deepacat.WorldshaperCore.common.data;
 
 import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
@@ -18,6 +20,13 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChainBlock;
+import net.minecraftforge.event.level.PistonEvent;
+import net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator;
+import net.minecraft.world.level.block.ChainBlock;
+import net.minecraftforge.event.level.PistonEvent;
+import net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 
 
 import static com.deepacat.WorldshaperCore.api.registries.WSRegistries.REGISTRATE;
@@ -32,6 +41,7 @@ import com.gregtechceu.gtceu.api.machine.*;
 
 
 public class WSMachines {
+
 
 
     public static final MachineDefinition[] WS_MACERATOR = registerTieredMachines("ws_macerator",
@@ -60,6 +70,8 @@ public class WSMachines {
 
 
 
+=======
+>>>>>>> parent of 24bd1c6 (new macerator)
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
             .multiblock("idk", holder -> new ParallelMultiblock(holder, 8))
             .rotationState(RotationState.ALL)
