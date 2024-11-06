@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
@@ -19,6 +20,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import it.unimi.dsi.fastutil.Pair;
+import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraftforge.event.level.PistonEvent;
@@ -103,7 +105,7 @@ public class WSMachines {
                     .aisle("FCF", "FCF", "PCP", "PCP", "PXP")
                     .aisle("FFF", "FSF", "###", "###", "###")
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('F', blocks(CASING_STEEL_SOLID.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where('F', blocks(CASING_STEEL_SOLID.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())).or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
                     .where('C', blocks(Blocks.CHAIN))
                     .where('P', blocks(CASING_STEEL_PIPE.get()))
                     .where('X', blocks(CASING_STEEL_SOLID.get()))
