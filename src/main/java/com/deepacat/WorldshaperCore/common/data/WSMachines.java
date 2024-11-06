@@ -4,21 +4,17 @@ package com.deepacat.WorldshaperCore.common.data;
 import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChainBlock;
-import net.minecraftforge.event.level.PistonEvent;
-import net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -27,9 +23,33 @@ import static com.deepacat.WorldshaperCore.common.data.WSRecipeTypes.STEAM_QUARR
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.machine.*;
 
 
 public class WSMachines {
+
+
+    public static final MachineDefinition[] WS_MACERATOR = registerTieredMachines("ws_macerator",
+            (holder, tier) -> new SimpleTieredMachine(holder, tier, defaultTankSizeFunction), (tier, builder) -> builder
+                    .langValue("%s Macerator %s".formatted(VLVH[tier], VLVT[tier]))
+                    .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id("macerator"),
+                            GTRecipeTypes.MACERATOR_RECIPES))
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+                    .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+                    .workableTieredHullRenderer(GTCEu.id("block/machines/macerator"))
+                    .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64,
+                            GTRecipeTypes.MACERATOR_RECIPES, defaultTankSizeFunction.apply(tier), true))
+                    .compassNode("macerator")
+                    .register(),
+            ELECTRIC_TIERS);
+
+
+
+
     public static final MultiblockMachineDefinition parallelwiremill = REGISTRATE
             .multiblock("idk", holder -> new ParallelMultiblock(holder, 4))
             .rotationState(RotationState.ALL)
