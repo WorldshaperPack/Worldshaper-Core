@@ -13,6 +13,7 @@ public class WSPortals {
 				.destDimID(new ResourceLocation("minecraft:the_nether"))
 				.lightWithItem(Items.DIAMOND)
 				.tintColor(33, 0, 33)
+				.forcedSize(3, 3)
 				.registerPortal();
 	}
 }

@@ -17,6 +17,7 @@ repositories {
     maven { url = "https://maven.blamejared.com/" }
     maven { url = "https://maven.theillusivec4.top/" }
     maven { url "https://cursemaven.com/"; content { includeGroup "curse.maven" } }
+    maven { url = "https://minecraft.curseforge.com/api/maven/" }
     maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
@@ -68,8 +69,10 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
 
     // ws mods
-    // runtimeOnly fg.deobf("curse.maven:dimensionaldoors-284876:5617415")
     implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
+    runtimeOnly fg.deobf("curse.maven:citadel-331936:5633260")
+    runtimeOnly fg.deobf("curse.maven:alexs-caves-924854:5848216")
+    runtimeOnly fg.deobf("curse.maven:dimensionaldoors-284876:5617415")
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -77,17 +80,15 @@ dependencies {
 }
 
 tasks.named('processResources', ProcessResources).configure {
-    var properties = [
-            "mod_license"      : mod_license,
-            "mod_id"           : mod_id,
-            "version"          : mod_version,
-            "mod_name"         : mod_name,
-            "mod_url"          : mod_url,
-            "mod_author"       : mod_author,
-            "forge_version"    : forge_version.split("\\.")[0], // only specify major version of forge
-            "minecraft_version": minecraft_version,
-            "gtceu_version"    : gtceu_version,
-    ]
+    var properties = ["mod_license"      : mod_license,
+                      "mod_id"           : mod_id,
+                      "version"          : mod_version,
+                      "mod_name"         : mod_name,
+                      "mod_url"          : mod_url,
+                      "mod_author"       : mod_author,
+                      "forge_version"    : forge_version.split("\\.")[0], // only specify major version of forge
+                      "minecraft_version": minecraft_version,
+                      "gtceu_version"    : gtceu_version,]
     inputs.properties(properties)
     filesMatching("META-INF/mods.toml") { expand properties + [project: project] }
 }
