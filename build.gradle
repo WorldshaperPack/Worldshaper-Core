@@ -20,6 +20,7 @@ repositories {
     maven { url = "https://minecraft.curseforge.com/api/maven/" }
     maven { url = "https://maven.terraformersmc.com/releases/" }
     maven { url "https://maven.resourcefulbees.com/repository/maven-public/" }
+    maven { url 'https://libs.azuredoom.com:4443/mods' }
 }
 
 version = mod_version
@@ -62,8 +63,7 @@ dependencies {
     runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
 
     // Customportalapi
-    implementation fg.deobf("curse.maven:custom-portal-api-forge-621463:4704980")
-    implementation fg.deobf("curse.maven:create-trains-and-customportalapi-compability-1065647:5540455")
+    implementation fg.deobf("net.kyrptonaught.customportalapi:customportalapi-reforged1201:1.0.4")
 
     // create
     implementation fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
