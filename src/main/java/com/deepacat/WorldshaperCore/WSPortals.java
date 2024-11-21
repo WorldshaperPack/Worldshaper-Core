@@ -50,7 +50,7 @@ public class WSPortals {
         CustomPortalBuilder.beginPortal()
                 .frameBlock(Blocks.STONE)
                 .customPortalBlock(PORTAL_BLOCKS.next())
-                .destDimID(new ResourceLocation("worldshaper:semiflat"))
+                .destDimID(new ResourceLocation("worldshaper:wsoverworld"))
                 .lightWithItem(Items.DIAMOND)
                 .tintColor(255, 255, 255)
                 .registerPortal();
