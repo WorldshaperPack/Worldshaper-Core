@@ -7,13 +7,11 @@ import lombok.Getter;
 
 public class ParallelMultiblock extends WorkableElectricMultiblockMachine implements IParallelMultiblock {
 
-    @Getter
-    private final int parallelAmount;
+	@Getter
+	private final int parallelAmount;
 
-    public ParallelMultiblock(IMachineBlockEntity holder, int parallel) {
-        super(holder);
-        this.parallelAmount = parallel;
-    }
-
-
+	public ParallelMultiblock(IMachineBlockEntity holder, int parallel) {
+		super(holder);
+		this.parallelAmount = parallel;
+	}
 }

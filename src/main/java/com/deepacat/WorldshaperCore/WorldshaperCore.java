@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.minecraft.client.Minecraft;
@@ -29,6 +30,10 @@ public class WorldshaperCore {
     public static final String MOD_ID = "worldshapercore";
     public static final Logger LOGGER = LogManager.getLogger();
     public static GTRegistrate WSCRegistrate = GTRegistrate.create(WorldshaperCore.MOD_ID);
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation("worldshapercore", FormattingUtil.toLowerCaseUnder(path));
+    }
 
     public WorldshaperCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

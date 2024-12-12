@@ -1,9 +1,12 @@
 package com.deepacat.WorldshaperCore.common.data;
 
 
+import com.deepacat.WorldshaperCore.WorldshaperCore;
 import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock;
+import com.deepacat.WorldshaperCore.common.machine.singleblock.ULVMinerMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.IMiner;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -13,12 +16,17 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableSteamMachineRenderer;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.machine.electric.MinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import it.unimi.dsi.fastutil.Pair;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +36,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 
 public class WSMachines {
 
@@ -101,6 +110,34 @@ public class WSMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
             .register();
+
+    public static final MachineDefinition[] ULVMINER = registerTieredMachines("ulvminer",
+        (holder, tier) -> new ULVMinerMachine(holder, tier, 60, 16, 0),
+        (tier, builder) -> builder
+            .rotationState(RotationState.ALL)
+            .langValue("ulv miner")
+            .recipeType(DUMMY_RECIPES)
+            .editableUI(ULVMinerMachine.EDITABLE_UI_CREATOR.apply(WorldshaperCore.id("ulv_miner"), 4))
+            .renderer(() -> new MinerRenderer(tier, GTCEu.id("block/machines/miner")))
+            .tooltipBuilder((stack, tooltip) -> {
+                int maxArea = 33;
+                long energyPerTick = 8;
+                int tickSpeed = 100;
+                tooltip.add(Component.translatable("gtceu.machine.miner.tooltip", maxArea, maxArea));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.uses_per_tick", energyPerTick)
+                        .append(Component.literal(", ").withStyle(ChatFormatting.GRAY))
+                        .append(Component.translatable("gtceu.machine.miner.per_block", tickSpeed / 20)));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
+                        FormattingUtil.formatNumbers(GTValues.V[tier]),
+                        GTValues.VNF[tier]));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
+                        FormattingUtil.formatNumbers(32L)));
+
+                tooltip.add(
+                        Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
+            })
+            .register(),
+        ULV);
 
     public static void init(){
 
