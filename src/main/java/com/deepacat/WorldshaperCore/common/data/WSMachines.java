@@ -111,14 +111,13 @@ public class WSMachines {
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
             .register();
 
-    public static final MachineDefinition[] ULVMINER = registerTieredMachines("miner",
-        (holder, tier) -> new ULVMinerMachine(holder, tier, 60, 16, 0),
-        (tier, builder) -> builder
+    public static final MachineDefinition ULVMINER = REGISTRATE.machine("ulv_miner",
+        holder -> new ULVMinerMachine(holder, ULV, 60, 16, 0)).tier(ULV)
             .rotationState(RotationState.ALL)
             .langValue("ulv miner")
             .recipeType(DUMMY_RECIPES)
             .editableUI(ULVMinerMachine.EDITABLE_UI_CREATOR.apply(WorldshaperCore.id("ulv_miner"), 4))
-            .renderer(() -> new MinerRenderer(tier, GTCEu.id("block/machines/miner")))
+            .renderer(() -> new MinerRenderer(ULV, GTCEu.id("block/machines/miner")))
             .tooltipBuilder((stack, tooltip) -> {
                 int maxArea = 33;
                 long energyPerTick = 7;
@@ -129,15 +128,14 @@ public class WSMachines {
                         .append(Component.translatable("gtceu.machine.miner.per_block", tickSpeed / 20)));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
                         FormattingUtil.formatNumbers(7),
-                        GTValues.VNF[tier]));
+                        GTValues.VNF[ULV]));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
                         FormattingUtil.formatNumbers(32L)));
 
                 tooltip.add(
                         Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
             })
-            .register(),
-        ULV);
+            .register();
 
     public static void init(){
 

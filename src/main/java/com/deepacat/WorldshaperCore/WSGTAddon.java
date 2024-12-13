@@ -1,5 +1,6 @@
 package com.deepacat.WorldshaperCore;
 
+import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
 import com.deepacat.WorldshaperCore.common.data.WSRecipes;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -12,7 +13,7 @@ import java.util.function.Consumer;
 public class WSGTAddon implements IGTAddon {
     @Override
     public GTRegistrate getRegistrate() {
-        return WorldshaperCore.WSCRegistrate;
+        return WSRegistries.REGISTRATE;
     }
     @Override
     public void initializeAddon() {

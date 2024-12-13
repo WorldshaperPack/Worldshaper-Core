@@ -28,7 +28,6 @@ import org.apache.logging.log4j.Logger;
 public class WorldshaperCore {
     public static final String MOD_ID = "worldshapercore";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate WSCRegistrate = GTRegistrate.create(WorldshaperCore.MOD_ID);
 
     public static ResourceLocation id(String path) {
         return new ResourceLocation("worldshapercore", FormattingUtil.toLowerCaseUnder(path));
