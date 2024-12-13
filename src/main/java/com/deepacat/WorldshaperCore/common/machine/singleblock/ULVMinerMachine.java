@@ -82,7 +82,7 @@ public class ULVMinerMachine extends WorkableTieredMachine
 	public ULVMinerMachine(IMachineBlockEntity holder, int tier, int speed, int maximumRadius, int fortune,
 						Object... args) {
 		super(holder, tier, GTMachines.defaultTankSizeFunction, args, 4, fortune, speed, maximumRadius);
-		this.energyPerTick = 7;
+		this.energyPerTick = 8;
 		this.chargerInventory = createChargerItemHandler();
 	}
 

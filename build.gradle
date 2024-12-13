@@ -41,6 +41,13 @@ minecraft {
         }
         client { property 'forge.enabledGameTestNamespaces', mod_id }
         server { property 'forge.enabledGameTestNamespaces', mod_id; args '--nogui' }
+        data {
+            // example of overriding the workingDirectory set in configureEach above
+            workingDirectory project.file('run-data')
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
     }
 }
 

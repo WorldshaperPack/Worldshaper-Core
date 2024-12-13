@@ -111,7 +111,7 @@ public class WSMachines {
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
             .register();
 
-    public static final MachineDefinition[] ULVMINER = registerTieredMachines("ulvminer",
+    public static final MachineDefinition[] ULVMINER = registerTieredMachines("miner",
         (holder, tier) -> new ULVMinerMachine(holder, tier, 60, 16, 0),
         (tier, builder) -> builder
             .rotationState(RotationState.ALL)
@@ -121,14 +121,14 @@ public class WSMachines {
             .renderer(() -> new MinerRenderer(tier, GTCEu.id("block/machines/miner")))
             .tooltipBuilder((stack, tooltip) -> {
                 int maxArea = 33;
-                long energyPerTick = 8;
+                long energyPerTick = 7;
                 int tickSpeed = 100;
                 tooltip.add(Component.translatable("gtceu.machine.miner.tooltip", maxArea, maxArea));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.uses_per_tick", energyPerTick)
                         .append(Component.literal(", ").withStyle(ChatFormatting.GRAY))
                         .append(Component.translatable("gtceu.machine.miner.per_block", tickSpeed / 20)));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
-                        FormattingUtil.formatNumbers(GTValues.V[tier]),
+                        FormattingUtil.formatNumbers(7),
                         GTValues.VNF[tier]));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
                         FormattingUtil.formatNumbers(32L)));
