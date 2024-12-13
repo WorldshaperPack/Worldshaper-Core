@@ -3,6 +3,7 @@ package com.deepacat.WorldshaperCore;
 import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
 import com.deepacat.WorldshaperCore.common.data.WSMachines;
 import com.deepacat.WorldshaperCore.common.data.WSRecipeTypes;
+import com.deepacat.WorldshaperCore.data.WSDatagen;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -13,9 +14,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -57,6 +56,7 @@ public class WorldshaperCore {
 
     private static void init() {
         WSRegistries.REGISTRATE.registerRegistrate();
+        WSDatagen.init();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
