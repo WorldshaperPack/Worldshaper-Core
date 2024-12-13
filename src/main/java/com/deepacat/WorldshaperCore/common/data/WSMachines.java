@@ -114,7 +114,7 @@ public class WSMachines {
     public static final MachineDefinition ULVMINER = REGISTRATE.machine("ulv_miner",
         holder -> new ULVMinerMachine(holder, ULV, 60, 16, 0)).tier(ULV)
             .rotationState(RotationState.ALL)
-            .langValue("ulv miner")
+            .langValue("Shoddy Miner")
             .recipeType(DUMMY_RECIPES)
             .editableUI(ULVMinerMachine.EDITABLE_UI_CREATOR.apply(WorldshaperCore.id("ulv_miner"), 4))
             .renderer(() -> new MinerRenderer(ULV, GTCEu.id("block/machines/miner")))
@@ -130,7 +130,7 @@ public class WSMachines {
                         FormattingUtil.formatNumbers(7),
                         GTValues.VNF[ULV]));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
-                        FormattingUtil.formatNumbers(32L)));
+                        FormattingUtil.formatNumbers(512L)));
 
                 tooltip.add(
                         Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));

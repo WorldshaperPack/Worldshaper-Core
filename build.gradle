@@ -27,6 +27,8 @@ version = mod_version
 group = maven_group
 base { archivesName = archives_base_name }
 java { sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17 }
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
     copyIdeResources = true
@@ -53,6 +55,10 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -81,14 +87,13 @@ dependencies {
     runtimeOnly fg.deobf("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:2.1.29")
     runtimeOnly fg.deobf("com.teamresourceful.resourcefulconfig:resourcefulconfig-forge-${minecraft_version}:2.1.2")
     runtimeOnly fg.deobf("earth.terrarium.botarium:botarium-forge-${minecraft_version}:2.3.4")
-    runtimeOnly fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:1.15.18") { transitive false }
     runtimeOnly fg.deobf("curse.maven:citadel-331936:5633260")
     runtimeOnly fg.deobf("curse.maven:alexs-caves-924854:5848216")
-    runtimeOnly fg.deobf("curse.maven:dimensionaldoors-284876:5617415")
 
-    // lombok
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    // disable for datagen
+    runtimeOnly fg.deobf("curse.maven:dimensionaldoors-284876:5617415")
+    runtimeOnly fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:1.15.18") { transitive false }
+
 }
 
 tasks.named('processResources', ProcessResources).configure {
