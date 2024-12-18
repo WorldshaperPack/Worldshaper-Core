@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -16,6 +17,7 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableSteamMachineRenderer;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
@@ -30,6 +32,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import static com.deepacat.WorldshaperCore.api.registries.WSRegistries.REGISTRATE;
+import static com.deepacat.WorldshaperCore.common.data.WSRecipeTypes.COAL_BURNER_FUELS;
 import static com.deepacat.WorldshaperCore.common.data.WSRecipeTypes.STEAM_QUARRY_RECIPES;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
@@ -119,18 +122,17 @@ public class WSMachines {
             .renderer(() -> new MinerRenderer(ULV, GTCEu.id("block/machines/miner")))
             .tooltipBuilder((stack, tooltip) -> {
                 int maxArea = 33;
-                long energyPerTick = 7;
+                long energyPerTick = 2;
                 int tickSpeed = 100;
                 tooltip.add(Component.translatable("gtceu.machine.miner.tooltip", maxArea, maxArea));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.uses_per_tick", energyPerTick)
                         .append(Component.literal(", ").withStyle(ChatFormatting.GRAY))
                         .append(Component.translatable("gtceu.machine.miner.per_block", tickSpeed / 20)));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.voltage_in",
-                        FormattingUtil.formatNumbers(7),
+                        FormattingUtil.formatNumbers(2),
                         GTValues.VNF[ULV]));
                 tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_storage_capacity",
                         FormattingUtil.formatNumbers(512L)));
-
                 tooltip.add(
                         Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
             })
@@ -146,8 +148,21 @@ public class WSMachines {
             GTRecipeTypes.STEAM_TURBINE_FUELS, ULVTanksizeFunction , 0.0f,ULV);
     public static final MachineDefinition[] ULV_GAS_TURBINE = registerSimpleGenerator("gas_turbine",
             GTRecipeTypes.GAS_TURBINE_FUELS, ULVTanksizeFunction, 0.1f, ULV);
-    public static final MachineDefinition[] ULV_COAL_BURNER = registerSimpleGenerator("coal_burner",
-            WSRecipeTypes.COAL_BURNER_FUELS, new Int2IntFunction() { public int get(int i) { return 0; } }, 0.1f, ULV);
+//    public static final MachineDefinition[] ULV_COAL_BURNER = registerSimpleGenerator("ulv_coal_burner",
+//            WSRecipeTypes.COAL_BURNER_FUELS, i -> 0, 0.1f, ULV);
+
+    public static final MachineDefinition ULV_COAL_BURNER = REGISTRATE.machine("ulv_coal_burner",
+                holder -> new SimpleGeneratorMachine(holder, ULV, i -> 0)).tier(ULV)
+            .rotationState(RotationState.ALL)
+            .langValue("Shoddy Coal Burning Generator")
+            .recipeType(COAL_BURNER_FUELS)
+            .editableUI(SimpleGeneratorMachine.EDITABLE_UI_CREATOR.apply(WorldshaperCore.id("ulv_coal_burner"), COAL_BURNER_FUELS))
+            .renderer(() -> new SimpleGeneratorMachineRenderer(ULV, GTCEu.id("block/generators/combustion")))
+//            .tooltipBuilder((stack, tooltip) -> {
+//                tooltip.add(Component.literal(""));
+//            })
+            .tooltips(workableTiered(ULV, GTValues.V[ULV], GTValues.V[ULV] * 64, COAL_BURNER_FUELS, 0, false))
+            .register();
 
     public static void init(){
 
