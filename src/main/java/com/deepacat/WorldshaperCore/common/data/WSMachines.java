@@ -6,7 +6,6 @@ import com.deepacat.WorldshaperCore.common.machine.multiblock.ParallelMultiblock
 import com.deepacat.WorldshaperCore.common.machine.singleblock.ULVMinerMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.IMiner;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -20,7 +19,6 @@ import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableSteamMachineRenderer;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.common.machine.electric.MinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import it.unimi.dsi.fastutil.Pair;
