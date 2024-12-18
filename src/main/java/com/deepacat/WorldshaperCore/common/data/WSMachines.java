@@ -24,6 +24,7 @@ import com.gregtechceu.gtceu.common.machine.electric.MinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -136,6 +137,19 @@ public class WSMachines {
                         Component.translatable("gtceu.universal.tooltip.working_area_max", maxArea, maxArea));
             })
             .register();
+
+    public static final Int2IntFunction ULVTanksizeFunction = (tier) -> {
+        return 8000;
+    };
+
+    public static final MachineDefinition[] ULV_COMBUSTION = registerSimpleGenerator("combustion",
+            GTRecipeTypes.COMBUSTION_GENERATOR_FUELS, ULVTanksizeFunction, 0.1f, ULV);
+    public static final MachineDefinition[] ULV_STEAM_TURBINE = registerSimpleGenerator("steam_turbine",
+            GTRecipeTypes.STEAM_TURBINE_FUELS, ULVTanksizeFunction , 0.0f,ULV);
+    public static final MachineDefinition[] ULV_GAS_TURBINE = registerSimpleGenerator("gas_turbine",
+            GTRecipeTypes.GAS_TURBINE_FUELS, ULVTanksizeFunction, 0.1f, ULV);
+    public static final MachineDefinition[] ULV_COAL_BURNER = registerSimpleGenerator("coal_burner",
+            WSRecipeTypes.COAL_BURNER_FUELS, new Int2IntFunction() { public int get(int i) { return 0; } }, 0.1f, ULV);
 
     public static void init(){
 

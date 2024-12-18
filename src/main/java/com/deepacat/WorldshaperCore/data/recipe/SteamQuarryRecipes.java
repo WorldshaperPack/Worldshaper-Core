@@ -8,7 +8,6 @@ import java.util.function.Consumer;
 import static com.deepacat.WorldshaperCore.common.data.WSRecipeTypes.STEAM_QUARRY_RECIPES;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class SteamQuarryRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
