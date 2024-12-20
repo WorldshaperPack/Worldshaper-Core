@@ -137,32 +137,6 @@ public class WSMachines {
             })
             .register();
 
-    public static final Int2IntFunction ULVTanksizeFunction = (tier) -> {
-        return 8000;
-    };
-
-    public static final MachineDefinition[] ULV_COMBUSTION = registerSimpleGenerator("combustion",
-            GTRecipeTypes.COMBUSTION_GENERATOR_FUELS, ULVTanksizeFunction, 0.1f, ULV);
-    public static final MachineDefinition[] ULV_STEAM_TURBINE = registerSimpleGenerator("steam_turbine",
-            GTRecipeTypes.STEAM_TURBINE_FUELS, ULVTanksizeFunction , 0.0f,ULV);
-    public static final MachineDefinition[] ULV_GAS_TURBINE = registerSimpleGenerator("gas_turbine",
-            GTRecipeTypes.GAS_TURBINE_FUELS, ULVTanksizeFunction, 0.1f, ULV);
-//    public static final MachineDefinition[] ULV_COAL_BURNER = registerSimpleGenerator("ulv_coal_burner",
-//            WSRecipeTypes.COAL_BURNER_FUELS, i -> 0, 0.1f, ULV);
-
-    public static final MachineDefinition ULV_COAL_BURNER = REGISTRATE.machine("ulv_coal_burner",
-                holder -> new SimpleGeneratorMachine(holder, ULV, i -> 0)).tier(ULV)
-            .rotationState(RotationState.ALL)
-            .langValue("Shoddy Coal Burning Generator")
-            .recipeType(COAL_BURNER_FUELS)
-            .editableUI(SimpleGeneratorMachine.EDITABLE_UI_CREATOR.apply(WorldshaperCore.id("ulv_coal_burner"), COAL_BURNER_FUELS))
-            .renderer(() -> new SimpleGeneratorMachineRenderer(ULV, GTCEu.id("block/generators/combustion")))
-//            .tooltipBuilder((stack, tooltip) -> {
-//                tooltip.add(Component.literal(""));
-//            })
-            .tooltips(workableTiered(ULV, GTValues.V[ULV], GTValues.V[ULV] * 64, COAL_BURNER_FUELS, 0, false))
-            .register();
-
     public static void init(){
 
     }
