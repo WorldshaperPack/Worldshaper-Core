@@ -53,7 +53,6 @@ public class WSMachines {
                     .workableTieredHullRenderer(GTCEu.id("block/machines/macerator"))
                     .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64,
                             GTRecipeTypes.MACERATOR_RECIPES, defaultTankSizeFunction.apply(tier), true))
-                    .compassNode("macerator")
                     .register(),
             ELECTRIC_TIERS);
 
