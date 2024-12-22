@@ -28,3 +28,16 @@ license = "${mod_license}"
         versionRange = "[${gtceu_version},)"
         ordering = "AFTER"
         side = "BOTH"
+    [[dependencies.${mod_id}]]
+        modId = "ad_astra"
+        mandatory = false
+        versionRange = "[1.15.19,)"
+        ordering = "AFTER"
+        side = "BOTH"
+    [[dependencies.${mod_id}]]
+        modId = "dimdoors"
+        mandatory = false
+        versionRange = "[5.4.1,)"
+        ordering = "AFTER"
+        side = "BOTH"
+
