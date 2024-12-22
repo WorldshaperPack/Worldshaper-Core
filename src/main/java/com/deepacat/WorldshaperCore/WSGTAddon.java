@@ -63,7 +63,6 @@ public class WSGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        //CustomRecipes.init(provider);
         WSRecipes.init(provider);
     }
 }
