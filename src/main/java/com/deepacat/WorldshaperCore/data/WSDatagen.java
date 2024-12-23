@@ -6,7 +6,6 @@ import com.tterrag.registrate.providers.ProviderType;
 
 
 public class WSDatagen {
-
 	public static void init() {
 		WSRegistries.REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
 	}

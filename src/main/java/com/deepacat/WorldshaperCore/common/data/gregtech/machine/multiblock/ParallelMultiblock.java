@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore.common.machine.multiblock;
+package com.deepacat.WorldshaperCore.common.data.gregtech.machine.multiblock;
 
 import com.deepacat.WorldshaperCore.api.capability.IParallelMultiblock;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

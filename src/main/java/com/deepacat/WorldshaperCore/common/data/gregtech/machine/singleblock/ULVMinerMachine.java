@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore.common.machine.singleblock;
+package com.deepacat.WorldshaperCore.common.data.gregtech.machine.singleblock;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
@@ -67,7 +67,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ULVMinerMachine extends WorkableTieredMachine
 		implements IMiner, IControllable, IFancyUIMachine, IDataInfoProvider {
 
-	protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(com.deepacat.WorldshaperCore.common.machine.singleblock.ULVMinerMachine.class,
+	protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ULVMinerMachine.class,
 			WorkableTieredMachine.MANAGED_FIELD_HOLDER);
 
 	@Getter
@@ -237,7 +237,7 @@ public class ULVMinerMachine extends WorkableTieredMachine
 				}
 			}));
 
-	protected static EditableUI<WidgetGroup, com.deepacat.WorldshaperCore.common.machine.singleblock.ULVMinerMachine> createTemplate(int inventorySize) {
+	protected static EditableUI<WidgetGroup, ULVMinerMachine> createTemplate(int inventorySize) {
 		return new EditableUI<>("miner", WidgetGroup.class, () -> {
 			int rowSize = (int) Math.sqrt(inventorySize);
 			int width = rowSize * 18 + 120;
@@ -288,7 +288,7 @@ public class ULVMinerMachine extends WorkableTieredMachine
 	/**
 	 * Create an energy bar widget.
 	 */
-	protected static EditableUI<SlotWidget, com.deepacat.WorldshaperCore.common.machine.singleblock.ULVMinerMachine> createBatterySlot() {
+	protected static EditableUI<SlotWidget, ULVMinerMachine> createBatterySlot() {
 		return new EditableUI<>("battery_slot", SlotWidget.class, () -> {
 			var slotWidget = new SlotWidget();
 			slotWidget.setBackground(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY);

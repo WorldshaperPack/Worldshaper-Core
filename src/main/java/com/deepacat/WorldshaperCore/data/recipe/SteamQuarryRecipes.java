@@ -5,7 +5,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.deepacat.WorldshaperCore.common.data.WSRecipeTypes.STEAM_QUARRY_RECIPES;
+import static com.deepacat.WorldshaperCore.common.data.gregtech.WSRecipeTypes.STEAM_QUARRY_RECIPES;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -22,6 +22,5 @@ public class SteamQuarryRecipes {
                 .EUt(32)
                 .duration(600)
                 .save(provider);
-
     }
 }

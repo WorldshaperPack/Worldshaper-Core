@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore.common.data;
+package com.deepacat.WorldshaperCore.common.data.gregtech;
 
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;

@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore.common.data;
+package com.deepacat.WorldshaperCore.common.data.gregtech;
 
 import com.deepacat.WorldshaperCore.api.capability.IParallelMultiblock;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;

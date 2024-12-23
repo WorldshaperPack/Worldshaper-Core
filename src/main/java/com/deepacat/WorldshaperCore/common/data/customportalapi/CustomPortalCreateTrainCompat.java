@@ -1,4 +1,4 @@
-package com.deepacat.WorldshaperCore;
+package com.deepacat.WorldshaperCore.common.data.customportalapi;
 
 import com.simibubi.create.content.contraptions.glue.SuperGlueEntity;
 import com.simibubi.create.foundation.utility.BlockFace;

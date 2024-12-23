@@ -1,8 +1,10 @@
 package com.deepacat.WorldshaperCore;
 
 import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
-import com.deepacat.WorldshaperCore.common.data.WSMachines;
-import com.deepacat.WorldshaperCore.common.data.WSRecipeTypes;
+import com.deepacat.WorldshaperCore.common.data.customportalapi.CustomPortalCreateTrainCompat;
+import com.deepacat.WorldshaperCore.common.data.customportalapi.WSPortals;
+import com.deepacat.WorldshaperCore.common.data.gregtech.WSMachines;
+import com.deepacat.WorldshaperCore.common.data.gregtech.WSRecipeTypes;
 import com.deepacat.WorldshaperCore.data.WSDatagen;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
@@ -10,17 +12,20 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,17 +59,22 @@ public class WorldshaperCore {
     }
 
     private static void init() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WSConfig.COMMON_CONFIG);
+        WSConfig.loadConfig(WSConfig.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MOD_ID + "-common.toml"));
+
         WSRegistries.REGISTRATE.registerRegistrate();
         WSDatagen.init();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        WSPortals.init();
-        event.enqueueWork(() -> {
-            CustomPortalApiRegistry.getAllPortalLinks().forEach(
-                    pl -> AllPortalTracks.registerIntegration(
-                            pl.getPortalBlock(), p -> CustomPortalCreateTrainCompat.createPortalTrackProvider(p, pl)));
-        });
+        if (ModList.get().isLoaded("ad_astra")) {
+            WSPortals.init();
+            event.enqueueWork(() -> {
+                CustomPortalApiRegistry.getAllPortalLinks().forEach(
+                        pl -> AllPortalTracks.registerIntegration(
+                                pl.getPortalBlock(), p -> CustomPortalCreateTrainCompat.createPortalTrackProvider(p, pl)));
+            });
+        }
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
