@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
@@ -67,7 +68,7 @@ public class WorldshaperCore {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        if (ModList.get().isLoaded("ad_astra")) {
+        if (WSConfig.CUSTOM_PORTAL_API_WS_PORTALS.get()) {
             WSPortals.init();
             event.enqueueWork(() -> {
                 CustomPortalApiRegistry.getAllPortalLinks().forEach(

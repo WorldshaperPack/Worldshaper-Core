@@ -10,14 +10,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
 public class WSPortals {
-    private static final int NUM_PORTAL_TYPES = 13;
+    private static final int NUM_PORTAL_TYPES = 14;
     private static final Iterator<RegistryObject<CustomPortalBlock>> PORTAL_BLOCKS;
 
     static {
@@ -32,11 +31,13 @@ public class WSPortals {
     }
 
     public static void earlyInit() {
+
     }
 
     public static void init() {
 //		All portal frames, tint, and light items are placeholder! replaced later
-        if(WSConfig.CUSTOM_PORTAL_API_WS_PORTALS.get()){
+
+        if(WSConfig.CUSTOM_PORTAL_API_WS_PORTALS.get()) {
             // test portal
             CustomPortalBuilder.beginPortal()
                     .frameBlock(GTBlocks.COIL_TRINIUM.get())
@@ -46,18 +47,7 @@ public class WSPortals {
                     .tintColor(33, 0, 33)
                     .registerPortal();
 
-            if(ModList.get().isLoaded("dimdoors")){
-                // Limbo
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("dimdoors:solid_static"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("dimdoors:limbo"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-            }
-
-            // - - - ws dimensions - - -
+            // - - WS Specific - -
 
             // semiflat
             CustomPortalBuilder.beginPortal()
@@ -91,7 +81,6 @@ public class WSPortals {
                     .lightWithItem(Items.DIAMOND)
                     .tintColor(255, 255, 255)
                     .registerPortal();
-
             // Forlorn Hollows
             CustomPortalBuilder.beginPortal()
                     .frameBlock(new ResourceLocation("alexscaves:coprolith"))
@@ -117,50 +106,59 @@ public class WSPortals {
                     .tintColor(255, 255, 255)
                     .registerPortal();
 
-            // - - - Ad astra planets - - -
+            // - - dim doors - -
 
-            if(ModList.get().isLoaded("ad_astra")){
-                // Moon
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("ad_astra:desh_factory_block"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("ad_astra:moon"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-                // Mars
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("ad_astra:ostrum_factory_block"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("ad_astra:mars"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-                // Mercury
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("ad_astra:mercury_stone_bricks"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("ad_astra:mercury"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-                // Venus
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("ad_astra:calorite_factory_block"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("ad_astra:venus"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-                // Glacio
-                CustomPortalBuilder.beginPortal()
-                        .frameBlock(new ResourceLocation("ad_astra:etrium_factory_block"))
-                        .customPortalBlock(PORTAL_BLOCKS.next())
-                        .destDimID(new ResourceLocation("ad_astra:glacio"))
-                        .lightWithItem(Items.DIAMOND)
-                        .tintColor(255, 255, 255)
-                        .registerPortal();
-            }
+            // Limbo
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("dimdoors:solid_static"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("dimdoors:limbo"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
+
+            // - - ad astra - -
+
+            // Moon
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("ad_astra:desh_factory_block"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("ad_astra:moon"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
+            // Mars
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("ad_astra:ostrum_factory_block"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("ad_astra:mars"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
+            // Mercury
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("ad_astra:mercury_stone_bricks"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("ad_astra:mercury"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
+            // Venus
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("ad_astra:calorite_factory_block"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("ad_astra:venus"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
+            // Glacio
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(new ResourceLocation("ad_astra:etrium_factory_block"))
+                    .customPortalBlock(PORTAL_BLOCKS.next())
+                    .destDimID(new ResourceLocation("ad_astra:glacio"))
+                    .lightWithItem(Items.DIAMOND)
+                    .tintColor(255, 255, 255)
+                    .registerPortal();
         }
     }
 }
