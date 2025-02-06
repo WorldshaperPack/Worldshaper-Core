@@ -1,6 +1,7 @@
 package com.deepacat.WorldshaperCore;
 
 import com.deepacat.WorldshaperCore.api.registries.WSRegistries;
+import com.deepacat.WorldshaperCore.common.data.WSPowerlines;
 import com.deepacat.WorldshaperCore.common.data.customportalapi.CustomPortalCreateTrainCompat;
 import com.deepacat.WorldshaperCore.common.data.customportalapi.WSPortals;
 import com.deepacat.WorldshaperCore.common.data.gregtech.WSMachines;
@@ -65,6 +66,7 @@ public class WorldshaperCore {
 
         WSRegistries.REGISTRATE.registerRegistrate();
         WSDatagen.init();
+        WSPowerlines.init();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

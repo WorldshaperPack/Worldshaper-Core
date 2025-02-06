@@ -83,6 +83,7 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
 
     // ws mods
+    implementation fg.deobf("curse.maven:create-powerlines-1076056:6132756")
     implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
     runtimeOnly fg.deobf("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:2.1.29")
     runtimeOnly fg.deobf("com.teamresourceful.resourcefulconfig:resourcefulconfig-forge-${minecraft_version}:2.1.2")
