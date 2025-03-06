@@ -1,8 +1,8 @@
 package com.deepacat.WorldshaperCore.common.data.customportalapi;
 
 import com.simibubi.create.content.contraptions.glue.SuperGlueEntity;
-import com.simibubi.create.foundation.utility.BlockFace;
-import com.simibubi.create.foundation.utility.Pair;
+import net.createmod.catnip.data.Pair;
+import net.createmod.catnip.math.BlockFace;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.CustomTeleporter;
 import net.kyrptonaught.customportalapi.util.PortalLink;
@@ -46,7 +46,7 @@ public class CustomPortalCreateTrainCompat {
     }
 
     /**
-     * This method is nearly exactly the same as the on in {@link com.simibubi.create.content.trains.track.AllPortalTracks#standardPortalProvider}
+     * This method is nearly exactly the same as the on in NO LONGER EXISTS TY CREATE 6
      * with just one difference: instead of using <pre>BlockStateProperties.HORIZONTAL_AXIS</pre> it uses <pre>BlockStateProperties.AXIS</pre>
      * since the is what CustomPortalAPI uses internally
      *

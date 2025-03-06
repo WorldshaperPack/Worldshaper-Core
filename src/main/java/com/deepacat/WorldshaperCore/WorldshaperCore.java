@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
+import net.createmod.catnip.data.Pair;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -72,11 +73,11 @@ public class WorldshaperCore {
     private void commonSetup(final FMLCommonSetupEvent event) {
         if (WSConfig.CUSTOM_PORTAL_API_WS_PORTALS.get()) {
             WSPortals.init();
-            event.enqueueWork(() -> {
-                CustomPortalApiRegistry.getAllPortalLinks().forEach(
-                        pl -> AllPortalTracks.registerIntegration(
-                                pl.getPortalBlock(), p -> CustomPortalCreateTrainCompat.createPortalTrackProvider(p, pl)));
-            });
+//            event.enqueueWork(() -> {
+//                CustomPortalApiRegistry.getAllPortalLinks().forEach(
+//                        pl -> AllPortalTracks.tryRegisterIntegration(
+//                                pl.getPortalBlock(), p -> CustomPortalCreateTrainCompat.createPortalTrackProvider(p, pl)));
+//            });
         }
     }
 
