@@ -13,15 +13,12 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.content.trains.track.AllPortalTracks;
-import net.createmod.catnip.data.Pair;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -73,11 +70,12 @@ public class WorldshaperCore {
     private void commonSetup(final FMLCommonSetupEvent event) {
         if (WSConfig.CUSTOM_PORTAL_API_WS_PORTALS.get()) {
             WSPortals.init();
-//            event.enqueueWork(() -> {
-//                CustomPortalApiRegistry.getAllPortalLinks().forEach(
-//                        pl -> AllPortalTracks.tryRegisterIntegration(
-//                                pl.getPortalBlock(), p -> CustomPortalCreateTrainCompat.createPortalTrackProvider(p, pl)));
-//            });
+            event.enqueueWork(() -> {
+                CustomPortalApiRegistry.getAllPortalLinks().forEach(
+                        link -> AllPortalTracks.tryRegisterIntegration(
+                                link.getPortalBlock().builtInRegistryHolder().key().location(),
+                                (levelIn, trackIn) -> CustomPortalCreateTrainCompat.findExit(levelIn, trackIn, link)));
+            });
         }
     }
 

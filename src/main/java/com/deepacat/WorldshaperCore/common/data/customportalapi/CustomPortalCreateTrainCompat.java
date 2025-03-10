@@ -1,7 +1,7 @@
 package com.deepacat.WorldshaperCore.common.data.customportalapi;
 
+import com.simibubi.create.api.contraption.train.PortalTrackProvider;
 import com.simibubi.create.content.contraptions.glue.SuperGlueEntity;
-import net.createmod.catnip.data.Pair;
 import net.createmod.catnip.math.BlockFace;
 import net.kyrptonaught.customportalapi.util.CustomPortalHelper;
 import net.kyrptonaught.customportalapi.util.CustomTeleporter;
@@ -24,13 +24,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Function;
 
 public class CustomPortalCreateTrainCompat {
-    public static Pair<ServerLevel, BlockFace> createPortalTrackProvider(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+    public static PortalTrackProvider.Exit findExit(ServerLevel levelIn, BlockFace trackIn, PortalLink portalLink) {
         ResourceKey<Level> trainDepot = ResourceKey.create(Registries.DIMENSION, portalLink.dimID);
-        return standardPortalProvider(inbound, Level.OVERWORLD, trainDepot,
-                (sl) -> CustomPortalCreateTrainCompat.wrapCustomTeleporter(inbound, portalLink));
+        return probeExit(levelIn, trackIn, Level.OVERWORLD, trainDepot,
+                (sl) -> CustomPortalCreateTrainCompat.makeTeleporter(levelIn, trackIn, portalLink));
     }
 
-    public static ITeleporter wrapCustomTeleporter(Pair<ServerLevel, BlockFace> inbound, PortalLink portalLink) {
+    public static ITeleporter makeTeleporter(ServerLevel levelIn, BlockFace trackIn, PortalLink portalLink) {
         return new ITeleporter() {
 
             @Override
@@ -38,42 +38,30 @@ public class CustomPortalCreateTrainCompat {
                 return CustomTeleporter.customTPTarget(
                         destWorld,
                         entity,
-                        inbound.getSecond().getConnectedPos(),
-                        CustomPortalHelper.getPortalBase(inbound.getFirst(), entity.getOnPos()),
+                        trackIn.getConnectedPos(),
+                        CustomPortalHelper.getPortalBase(levelIn, entity.getOnPos()),
                         portalLink.getFrameTester());
             }
         };
     }
 
-    /**
-     * This method is nearly exactly the same as the on in NO LONGER EXISTS TY CREATE 6
-     * with just one difference: instead of using <pre>BlockStateProperties.HORIZONTAL_AXIS</pre> it uses <pre>BlockStateProperties.AXIS</pre>
-     * since the is what CustomPortalAPI uses internally
-     *
-     * @param inbound
-     * @param firstDimension
-     * @param secondDimension
-     * @param customPortalForcer
-     * @return
-     */
-    public static Pair<ServerLevel, BlockFace> standardPortalProvider(Pair<ServerLevel, BlockFace> inbound,
-                                                                      ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
-                                                                      Function<ServerLevel, ITeleporter> customPortalForcer) {
-        ServerLevel level = inbound.getFirst();
-        ResourceKey<Level> resourcekey = level.dimension() == secondDimension ? firstDimension : secondDimension;
-        MinecraftServer minecraftserver = level.getServer();
+    // TODO: change this to something less convoluted
+    public static PortalTrackProvider.Exit probeExit(ServerLevel levelIn, BlockFace trackIn,
+                                                     ResourceKey<Level> firstDimension, ResourceKey<Level> secondDimension,
+                                                     Function<ServerLevel, ITeleporter> customPortalForcer) {
+        ResourceKey<Level> resourcekey = levelIn.dimension() == secondDimension ? firstDimension : secondDimension;
+        MinecraftServer minecraftserver = levelIn.getServer();
         ServerLevel otherLevel = minecraftserver.getLevel(resourcekey);
 
         if (otherLevel == null || !minecraftserver.isNetherEnabled())
             return null;
 
-        BlockFace inboundTrack = inbound.getSecond();
-        BlockPos portalPos = inboundTrack.getConnectedPos();
-        BlockState portalState = level.getBlockState(portalPos);
+        BlockPos portalPos = trackIn.getConnectedPos();
+        BlockState portalState = levelIn.getBlockState(portalPos);
         ITeleporter teleporter = customPortalForcer.apply(otherLevel);
 
-        SuperGlueEntity probe = new SuperGlueEntity(level, new AABB(portalPos));
-        probe.setYRot(inboundTrack.getFace()
+        SuperGlueEntity probe = new SuperGlueEntity(levelIn, new AABB(portalPos));
+        probe.setYRot(trackIn.getFace()
                 .toYRot());
         probe.setPortalEntrancePos();
 
@@ -86,10 +74,10 @@ public class CustomPortalCreateTrainCompat {
         if (otherPortalState.getBlock() != portalState.getBlock())
             return null;
 
-        Direction targetDirection = inboundTrack.getFace();
+        Direction targetDirection = trackIn.getFace();
         if (targetDirection.getAxis() == otherPortalState.getValue(BlockStateProperties.AXIS))
             targetDirection = targetDirection.getClockWise();
         BlockPos otherPos = otherPortalPos.relative(targetDirection);
-        return Pair.of(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
+        return new PortalTrackProvider.Exit(otherLevel, new BlockFace(otherPos, targetDirection.getOpposite()));
     }
 }
