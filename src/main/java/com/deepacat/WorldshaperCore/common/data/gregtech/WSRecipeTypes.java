@@ -16,7 +16,7 @@ public class WSRecipeTypes {
             .setMaxIOSize(1, 9, 0, 0);
     public static final GTRecipeType COAL_BURNER_FUELS = GTRecipeTypes.register("coal_burner", GENERATOR)
             .setMaxIOSize(1, 0, 0, 0).setEUIO(IO.OUT)
-            .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_2)
+            .setSlotOverlay(false, false, true, GuiTextures.BOX_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);
 
