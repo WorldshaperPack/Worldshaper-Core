@@ -1,3 +1,6 @@
-// 1.20.1	2025-03-22T03:00:40.5184433	Registrate Provider for worldshapercore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
-bdca3db3009ee90291b107d95076682236628872 assets/worldshapercore/lang/en_ud.json
-7e99365accd1b89b7bfa1178784cfe8ef6643fdb assets/worldshapercore/lang/en_us.json
+// 1.20.1	2025-07-13T19:51:48.2650859	Registrate Provider for worldshapercore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+b2d1fa677fc11155536c6320bec0faaf9a157c08 assets/worldshapercore/blockstates/ulv_miner.json
+2c2d4f2c57d92ad036ec86ac6459bd3626d2fe09 assets/worldshapercore/lang/en_ud.json
+db270955394d37b2b5a24b5f49f4124515f8f7cb assets/worldshapercore/lang/en_us.json
+df118130070d5ef63533a74a1b59c8665db17546 assets/worldshapercore/models/block/machine/ulv_miner.json
+5dd326dd62a576d4d004f5edd54c2e5b71b58fdf assets/worldshapercore/models/item/ulv_miner.json

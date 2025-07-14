@@ -12,7 +12,19 @@ repositories {
     maven { url = "https://maven.kyrptonaught.dev" }
     maven { url = 'https://maven.gtceu.com'; content { includeGroup 'com.gregtechceu.gtceu' } }
     maven { url "https://maven.firstdarkdev.xyz/snapshots/" }
-    maven { url = "https://maven.saps.dev/minecraft"; content { includeGroup "dev.latvian.mods" } }
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.rtyley"
+        }
+    }
     maven { url = "https://maven.tterrag.com/" }
     maven { url = "https://maven.blamejared.com/" }
     maven { url = "https://maven.theillusivec4.top/" }
@@ -50,6 +62,7 @@ minecraft {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--existing-mod', 'gtceu', '--existing-mod', 'kubejs'
         }
     }
 }
@@ -95,8 +108,7 @@ dependencies {
 
 
     // disable for datagen
-    runtimeOnly fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:1.15.20")
-    runtimeOnly fg.deobf("curse.maven:dimensionaldoors-284876:5617415")
+//    runtimeOnly fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:1.15.20")
 }
 
 tasks.named('processResources', ProcessResources).configure {

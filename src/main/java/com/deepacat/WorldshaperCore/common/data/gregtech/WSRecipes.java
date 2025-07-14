@@ -1,6 +1,5 @@
 package com.deepacat.WorldshaperCore.common.data.gregtech;
 
-import com.deepacat.WorldshaperCore.WSConfig;
 import com.deepacat.WorldshaperCore.data.recipe.GeneratorFuelRecipes;
 import com.deepacat.WorldshaperCore.data.recipe.SteamQuarryRecipes;
 
